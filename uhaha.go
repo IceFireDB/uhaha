@@ -76,7 +76,6 @@ const usage = `{{NAME}} version: {{VERSION}} ({{GITSHA}})
 Usage: {{NAME}} [-n id] [-a addr] [options]
 
 Basic options:
-  -v               : display version
   -h               : display help, this screen
   -a addr          : bind to address  (default: 127.0.0.1:11001)
   -n id            : node ID  (default: 1)
@@ -336,8 +335,8 @@ func confInit(conf *Config) {
 	}
 	var backend string
 	var testNode string
-	var vers bool
-	flag.BoolVar(&vers, "v", false, "")
+	// var vers bool
+	// flag.BoolVar(&vers, "v", false, "")
 	flag.StringVar(&conf.Addr, "a", conf.Addr, "")
 	flag.StringVar(&conf.NodeID, "n", conf.NodeID, "")
 	flag.StringVar(&conf.DataDir, "d", conf.DataDir, "")
@@ -359,10 +358,10 @@ func confInit(conf *Config) {
 		conf.Flag.PreParse()
 	}
 	flag.Parse()
-	if vers {
-		fmt.Printf("%s\n", versline(*conf))
-		os.Exit(0)
-	}
+	// if vers {
+	// 	fmt.Printf("%s\n", versline(*conf))
+	// 	os.Exit(0)
+	// }
 	switch backend {
 	case "leveldb":
 		conf.Backend = LevelDB
